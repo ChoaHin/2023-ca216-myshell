@@ -33,8 +33,18 @@ int main (int argc, char ** argv)
     char buf[MAX_BUFFER];                      // line buffer
     char * args[MAX_ARGS];                     // pointers to arg strings
     char ** arg;                               // working pointer thru args
-    char * prompt = "==>" ;                    // shell prompt
+    char * prompt = "\033[32m|> " ;                    // shell prompt
     char *cwd = getcwd(NULL, 0);               // current working directory
+
+    system("clear"); //clear screen
+
+    //start logo graphics
+    printf(" ___  ____    __    ___  _   _  ____  __    __   \n");
+    printf("/ __)( ___)  /__\\  / __)( )_( )( ___)(  )  (  )  \n");
+    printf("\\__ \\ )__)  /(__)\\ \\__ \\ ) _ (  )__)  )(__  )(__ \n");
+    printf("(___/(___) (__)(__) (___/(_) (_)(____)(____)(____)\n");
+    printf("==================================================\n");
+
     printf("%s\n", cwd);
 
     // FILE *batch = NULL;
@@ -101,7 +111,7 @@ int main (int argc, char ** argv)
                             printf("error changing directory\n");
                         }
                     } else {
-                        printf("missing cd argument");
+                        printf("missing cd argument\n");
                     }
                 }
 
@@ -163,7 +173,7 @@ int main (int argc, char ** argv)
                 }
 
                 if (!strcmp(args[0],"pause")) { //pause command
-                    printf("Press Enter key to continue...");
+                    printf("Press Enter key to continue...\n");
                     getchar();
                 }
 
@@ -173,8 +183,7 @@ int main (int argc, char ** argv)
                 /* else pass command onto OS (or in this instance, print them out) */
                 arg = args;
                 while (*arg) {
-
-                    printf("%s ",*arg);
+                    printf("\033[31m|%s\n",*arg);
                     arg++;
                 }
             }
