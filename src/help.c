@@ -1,3 +1,6 @@
+// author:  Chee Hin Choa
+// student number:  21100497
+//***************************************************************************/
 #include <stdlib.h>
 
 void help(){

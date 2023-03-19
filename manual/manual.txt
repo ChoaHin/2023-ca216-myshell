@@ -44,3 +44,7 @@ Kernighan, B. W., & Pike, R. (1984). The UNIX Programming Environment. Prentice 
 Robbins, A., & Beebe, N. (2005). Classic Shell Scripting. O'Reilly Media, Inc.
 Linux man pages. (n.d.). Retrieved March 19, 2023, from https://www.kernel.org/doc/man-pages/
 Bash Reference Manual. (n.d.). Retrieved March 19, 2023, from https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+// author:  Chee Hin Choa
+// student number:  21100497
+//***************************************************************************/

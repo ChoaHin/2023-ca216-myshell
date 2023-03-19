@@ -10,7 +10,8 @@
 // ********************************************************************
 // date:    March 2023
 // author:  Chee Hin Choa
-// explicit or implicit, in progress.
+// student number:  21100497
+// A simple shell program with some built-in commands
 // *******************************************************************/
 
 //Reference
