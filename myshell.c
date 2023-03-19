@@ -23,7 +23,7 @@
 #define MAX_ARGS 64                            // max # args
 #define SEPARATORS " \t\n"                     // token separators
 
-#include <unistd.h> // maybe cd
+#include <unistd.h> // for cd
 #include <dirent.h> // for dlr
 #include <sys/stat.h> // for dlr
 #include <time.h> // for dlr
@@ -48,8 +48,10 @@ int main (int argc, char ** argv)
     printf("(___/(___) (__)(__) (___/(_) (_)(____)(____)(____)\n");
     printf("==================================================\n");
 
-    printf("%s\n", cwd);
+    printf("%s\n", cwd); // show current working directory
 
+
+/* batch file prototype, error infinite loop */
     // FILE *batch = NULL;
     // char command[MAX_BUFFER];
     // if(argc > 1){
@@ -103,8 +105,10 @@ int main (int argc, char ** argv)
                 }
 
                 if (!strcmp(args[0],"cd")) { // "cd" command
+                // if directory is present, and only one
                     if (args[1] != NULL) {
                         if(chdir(args[1]) == 0){
+                            //change working directory and change environment elements aswell
                             printf("changed directory to %s\n", getcwd(NULL, 0));
                             getcwd(cwd, 0);
                             if (setenv("PWD", cwd, 1) != 0) {
@@ -127,37 +131,36 @@ int main (int argc, char ** argv)
                 }
 
                 if (!strcmp(args[0], "dir")) { // "dir" command
-                    struct dirent *ent;
-                    DIR *dir;
-                    if(args[1]){
-                        dir = opendir(args[1]);
+                    struct dirent *ent; //directory entry
+                    DIR *dir; //directory
+                    if(args[1]){ //if directory is present
+                        dir = opendir(args[1]); //open directory
                     } else {
-                        dir = opendir(cwd);
+                        dir = opendir(cwd); //else open current directory
                     }
-                    if(dir == NULL){
+                    if(dir == NULL){ //if directory is not present
                         printf("error opening directory\n");
                         break;
                     }   
 
                     while ((ent = readdir(dir)) != NULL) {
-                        struct stat info;
-                        char file_path[512];
-                        snprintf(file_path, 512, "%s/%s", cwd, ent->d_name);
+                        struct stat info; //file info
+                        char file_path[512];  
+                        snprintf(file_path, 512, "%s/%s", cwd, ent->d_name);  //get file path
 
-                        if (stat(file_path, &info) == -1) {
+                        if (stat(file_path, &info) == -1) {  
                             printf("Failed to get file info for %s\n", ent->d_name);
                             continue;
                         }
 
                         printf("%lld\t%s\t%s\n", (long long)info.st_size, ctime(&info.st_mtime), ent->d_name);
                     }
-
                     closedir(dir);
                 }
 
                 if (!strcmp(args[0],"environ")) {//"environ" command
                     extern char **environ;
-                    for(int i = 0; environ[i] != NULL; i++){
+                    for(int i = 0; environ[i] != NULL; i++){  //print out environment variables
                         printf("%s\n", environ[i]);
                     }
                 }

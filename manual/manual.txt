@@ -16,6 +16,9 @@ cd <directory>
 clr
 Use clr to clear the screen.
 
+cat
+Use cat for secret. XD
+
 dir
 Use dir to list the contents of a directory. This command is equivalent to ls -al.
 dir <directory>
