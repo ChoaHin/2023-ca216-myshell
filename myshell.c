@@ -1,16 +1,16 @@
 // internal commands:
-// clear - clears the screen
-// quit - exits from the program
+// cd  - change the current default directory. If the  argument is not present, report the current directory. If the directory does not exist an appropriate error should be reported. This command should also change the PWD environment variable.
+// clr - clear the screen.
+// dir  - list the contents of directory e.g. ls -al <directory>
+// environ - list all the environment strings
+// echo  - echo  on the display followed by a new line (multiple spaces/tabs may be reduced to a single space)
+// help - display the user manual using the more filter.  
+// pause - pause operation of the shell until 'Enter' is pressed
+// quit - quit the shell
 // ********************************************************************
-// version: 1.0
-// date:    December 2003
-// author:  Ian G Graham
-// School of Information Technology
-// Griffith University, Gold Coast
-// ian.graham@griffith.edu.au
-// copyright (c) Ian G Graham, 2003. All rights reserved.
-// This code can be used for teaching purposes, but no warranty,
-// explicit or implicit, is provided.
+// date:    March 2023
+// author:  Chee Hin Choa
+// explicit or implicit, in progress.
 // *******************************************************************/
 
 //Reference
@@ -27,6 +27,9 @@
 #include <dirent.h> // for dlr
 #include <sys/stat.h> // for dlr
 #include <time.h> // for dlr
+
+//function prototypes
+#include "cat.h"
 
 int main (int argc, char ** argv)
 {
@@ -116,12 +119,8 @@ int main (int argc, char ** argv)
                 }
 
                 if (!strcmp(args[0],"cat")) { // "cat" command
-                    printf("\n");
-                    printf(" /\\_/\\ \n");
-                    printf("( o.o )\n");
-                    printf(" > ^ < \n");
-                    printf("\n");
-                    }
+                    cat();
+                }
                 
                 if (!strcmp(args[0], "clr")) { // "clr" command
                     system("clear");
@@ -146,8 +145,7 @@ int main (int argc, char ** argv)
                             continue;
                         }
 
-                        //printf("%lld\t%s\t", (long long)info.st_size, ctime(&info.st_mtime));
-                        printf("%s\n", ent->d_name);
+                        printf("%lld\t%s\t%s\n", (long long)info.st_size, ctime(&info.st_mtime), ent->d_name);
                     }
 
                     closedir(dir);
