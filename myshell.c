@@ -129,7 +129,11 @@ int main (int argc, char ** argv)
                 if (!strcmp(args[0], "dir")) { // "dir" command
                     struct dirent *ent;
                     DIR *dir;
-                    dir = opendir(cwd);
+                    if(args[1]){
+                        dir = opendir(args[1]);
+                    } else {
+                        dir = opendir(cwd);
+                    }
                     if(dir == NULL){
                         printf("error opening directory\n");
                         break;
