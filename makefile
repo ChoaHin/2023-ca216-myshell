@@ -1,2 +1,5 @@
-myshell: myshell.c utility.c myshell.h
-    gcc -Wall myshell.c utility.c -o myshell
+SRCDIR := src
+SRCS := $(wildcard $(SRCDIR)/*.c)
+
+myshell: myshell.c myshell.h $(SRCS)
+	gcc -Wall myshell.c $(SRCS) -o myshell
