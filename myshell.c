@@ -29,7 +29,7 @@
 #include <time.h> // for dlr
 
 //function prototypes
-#include "cat.h"
+#include "myshell.h"
 
 int main (int argc, char ** argv)
 {
@@ -159,20 +159,15 @@ int main (int argc, char ** argv)
                 }
                 
                 if (!strcmp(args[0],"echo")) {
-                    int i;
-                    for (i = 1; args[i] != NULL; i++) {
-                        printf("%s ", args[i]);
-                    }
-                    printf("\n");
+                    echo(args);
                 }
 
                 if (!strcmp(args[0],"help")) { //help command
-                    system("more manual.txt");
+                    help();
                 }
 
                 if (!strcmp(args[0],"pause")) { //pause command
-                    printf("Press Enter key to continue...\n");
-                    getchar();
+                    pause();
                 }
 
                 if (!strcmp(args[0],"quit"))   // "quit" command
