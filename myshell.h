@@ -44,4 +44,6 @@ void cd(char** args);
 void ls_environ();
 void clr();
 
+int redirection(char** args, char **inputfile, char **outputfile);
+
 #endif
