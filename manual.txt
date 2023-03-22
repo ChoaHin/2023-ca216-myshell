@@ -1,5 +1,14 @@
 Seashell User Manual
-Welcome to Cshell, a simple UNIX shell with basic functionality. This manual provides an overview of how to use the shell, including its commands and features.
+Welcome to Cshell, a simple UNIX shell with basic functionality.
+This manual provides an overview of how to use the shell, including its commands and features.
+
+----------------------------------------------------------------------------------------------------------
+Introduction
+A shell is a command-line interface used to interact with the operating system. 
+In this case, the shell is designed for use on a UNIX-based operating system. 
+The simple shell program provides a basic command-line interface, which allows the user to execute simple commands.
+With added color to separate input and output line.
+
 ----------------------------------------------------------------------------------------------------------
 Getting Started
 To use Cshell, open a terminal and navigate to the directory containing the makefile executable file.
@@ -8,42 +17,88 @@ Then, type the command ./myshell to start the shell.
 
 1)make
 2)./myshell
+
 ----------------------------------------------------------------------------------------------------------
 
 Commands
 myshell supports the following internal commands:
 
-cd
-Use cd to change the current default directory. If no argument is provided, an error message will be shown. If the directory provided does not exist, an appropriate error message will be displayed. The cd command also changes the PWD environment variable.
 cd <directory>
+    Use cd to change the current default directory to given directory. 
+    If no argument is provided, an error message will be shown. 
+    If the directory provided does not exist, an appropriate error message will be displayed. 
+    If any argument other than directory, an appropriate error message will be displayed.
+    The cd command also changes the PWD environment variable.
 
 clr
-Use clr to clear the screen.
+    Use clr to clear the screen.
+    Reinitializes the terminal and restores settings to default.
 
-cat
-Use cat for secret. XD and display the content in the file.
 cat <file>
+    Use cat for secret. XD and display the content in the file with new line character.
+    Have a wonderful day
 
-dir
-Use dir to list the contents of a directory. This command is equivalent to ls -al.
 dir <directory>
+    Use dir to list the contents of a directory.
+    Any directory pass in, will display all contents contian in that directory with details.
+    If not directory pass in, current working directory will be default to show all contents.
+    This command is equivalent to ls -al.
+    Displaying all files' detail in new line character.
+    First line will display the size of the directory.
+    Details contain permission, owner, group, size, data last modified, and name of the file.
+    Argument other than directory will return an error message.
 
 ls_environ
-Use environ to display all the environment strings.
+    Use environ to display all the environment strings.
+    Any argument pass in with this command will be ignored.
 
-echo
-Use echo to display a message on the screen. Multiple spaces or tabs may be reduced to a single space.
 echo <message>
+    Echo will return the same message back to output line with a new line character.
+    Multiple spaces or tabs may be reduced to a single space.
+    If no message is give in, it would simply return just a new line character to output line.
 
 help
-Use help to display the user manual using the more filter.
+    Use help to display the user manual using the more filter.
+    User manual contain brief description on instruction and features of the shell.
 
 pause
-Use pause to pause the operation of the shell until the Enter key is pressed.
+    Use pause to pause the operation of the shell until the Enter key is pressed.
+    No other command will be execute until Enter key is pressed.
+    Any input will be save on screen for further execute after Enter key is pressed.
 
 quit
-Use quit to exit the shell.
+    Use quit to exit the shell.
+    It will end the cshell shell and return to original terminal.
 
+----------------------------------------------------------------------------------------------------------
+Program Environment
+
+Environment variable can be display using ls_environ or environ command.
+Environment variable contain detail about program running environment, such as "PATH", "PWD".
+The variable specified the location where commands are taking action.
+
+----------------------------------------------------------------------------------------------------------
+Input/Output Redirection or I/O Redirection
+The shell program allows commands for input/output redirection. 
+Such that user can redirect the input or output of a command to a file instead of the standard input/output. 
+To redirect any file, use the following syntax:
+
+command arg1 <arg2> < inputfile
+    replace stdin with inputfile, arg2 depend on the running command.
+
+command arg1 <arg2> > outputfile
+    replace stdout with outputfile, outputfile is created if it does not exist and truncated if it does.
+
+command arg1 <arg2> >> outputfile
+    replace stdout with outputfile, outputfile is created if it does not exist and appended to if it does.
+
+----------------------------------------------------------------------------------------------------------
+Background Program Execution
+The shell program allows for background program execution.
+User can enables a command to execute in the background while continue using the shell.
+To execute a command in the background, simply append an ampersand symbol (&) to the command.
+
+<command> &
 
 // ********************************************************************
 // date:    March 2023
@@ -58,6 +113,8 @@ Kernighan, B. W., & Pike, R. (1984). The UNIX Programming Environment. Prentice 
 Robbins, A., & Beebe, N. (2005). Classic Shell Scripting. O'Reilly Media, Inc.
 Linux man pages. (n.d.). Retrieved March 19, 2023, from https://www.kernel.org/doc/man-pages/
 Bash Reference Manual. (n.d.). Retrieved March 19, 2023, from https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+Bach, M. J. (1986). The Design of the UNIX Operating System. Prentice-Hall, Inc.
+Stevens, W. R. (1992). Advanced Programming in the UNIX Environment. Addison-Wesley Professional.
 
 /*
 I understand that the University regards breaches of academic integrity and plagiarism as
