@@ -6,6 +6,7 @@
 // *******************************************************************/
 
 //References
+// https://man7.org/linux/man-pages/man3/getcwd.3.html
 
 /*
 I understand that the University regards breaches of academic integrity and plagiarism as
@@ -28,10 +29,28 @@ https://www4.dcu.ie/library/classes_and_tutorials/citingreferencing.shtml and/or
 appropriate referencing system recommended in the assignment guidelines and/or
 programme documentation.
 */
-#include <stdio.h>
 
-void pause(){
-    printf("Press Enter to continue..."); 
-    fflush(stdout); // flush the output buffer
-    while(getchar() != '\n'); // wait for Enter to be pressed
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+#define PATH_MAX 2048
+
+void cd(char **args){
+        // if directory is present, and only one
+        if (args[1] != NULL) {
+            if(chdir(args[1]) == 0){
+                //change working directory and change environment elements aswell
+                printf("changed directory to %s\n", getcwd(NULL, 0));
+                char cwd[PATH_MAX];
+                getcwd(cwd, sizeof(cwd));
+                if (setenv("PWD", cwd, 1) != 0) {
+                    printf("error setting environment variable\n");
+                }
+            } else {
+                printf("error changing directory\n");
+            }
+        } else {
+            printf("missing cd argument\n");
+        }
 }

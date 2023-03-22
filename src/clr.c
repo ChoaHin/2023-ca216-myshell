@@ -6,6 +6,7 @@
 // *******************************************************************/
 
 //References
+//https://stackoverflow.com/questions/23102627/creating-ls-command-in-c
 
 /*
 I understand that the University regards breaches of academic integrity and plagiarism as
@@ -28,10 +29,9 @@ https://www4.dcu.ie/library/classes_and_tutorials/citingreferencing.shtml and/or
 appropriate referencing system recommended in the assignment guidelines and/or
 programme documentation.
 */
-#include <stdio.h>
 
-void pause(){
-    printf("Press Enter to continue..."); 
-    fflush(stdout); // flush the output buffer
-    while(getchar() != '\n'); // wait for Enter to be pressed
+#include <stdlib.h>
+
+void clr(){
+    system("clear");  //clear screen
 }

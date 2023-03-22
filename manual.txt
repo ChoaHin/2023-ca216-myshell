@@ -1,0 +1,82 @@
+Seashell User Manual
+Welcome to Cshell, a simple UNIX shell with basic functionality. This manual provides an overview of how to use the shell, including its commands and features.
+----------------------------------------------------------------------------------------------------------
+Getting Started
+To use Cshell, open a terminal and navigate to the directory containing the makefile executable file.
+Run "make" in the terminal once to compile all necessary file to run the shell.
+Then, type the command ./myshell to start the shell.
+
+1)make
+2)./myshell
+----------------------------------------------------------------------------------------------------------
+
+Commands
+myshell supports the following internal commands:
+
+cd
+Use cd to change the current default directory. If no argument is provided, an error message will be shown. If the directory provided does not exist, an appropriate error message will be displayed. The cd command also changes the PWD environment variable.
+cd <directory>
+
+clr
+Use clr to clear the screen.
+
+cat
+Use cat for secret. XD and display the content in the file.
+cat <file>
+
+dir
+Use dir to list the contents of a directory. This command is equivalent to ls -al.
+dir <directory>
+
+ls_environ
+Use environ to display all the environment strings.
+
+echo
+Use echo to display a message on the screen. Multiple spaces or tabs may be reduced to a single space.
+echo <message>
+
+help
+Use help to display the user manual using the more filter.
+
+pause
+Use pause to pause the operation of the shell until the Enter key is pressed.
+
+quit
+Use quit to exit the shell.
+
+
+// ********************************************************************
+// date:    March 2023
+// author:  Chee Hin Choa
+// student number:  21100497
+// A simple shell program with some built-in commands
+// *******************************************************************/
+
+//References
+https://man7.org/linux/man-pages/
+Kernighan, B. W., & Pike, R. (1984). The UNIX Programming Environment. Prentice Hall.
+Robbins, A., & Beebe, N. (2005). Classic Shell Scripting. O'Reilly Media, Inc.
+Linux man pages. (n.d.). Retrieved March 19, 2023, from https://www.kernel.org/doc/man-pages/
+Bash Reference Manual. (n.d.). Retrieved March 19, 2023, from https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+/*
+I understand that the University regards breaches of academic integrity and plagiarism as
+grave and serious.
+
+I have read and understood the DCU Academic Integrity and Plagiarism Policy. I accept the
+penalties that may be imposed should I engage in practice or practices that breach this
+policy.
+
+I have identified and included the source of all facts, ideas, opinions and viewpoints of others
+in the assignment references. Direct quotations, paraphrasing, discussion of ideas from
+books, journal articles, internet sources, module text, or any other source whatsoever are
+acknowledged and the sources cited are identified in the assignment references.
+I declare that this material, which I now submit for assessment, is entirely my own work and
+has not been taken from the work of others save and to the extent that such work has been
+cited and acknowledged within the text of my work.
+
+I have used the DCU library referencing guidelines (available at
+https://www4.dcu.ie/library/classes_and_tutorials/citingreferencing.shtml and/or the
+appropriate referencing system recommended in the assignment guidelines and/or
+programme documentation.
+*/
