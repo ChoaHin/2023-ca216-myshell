@@ -122,7 +122,6 @@ void runCommand(char *args[MAX_ARGS]){
     2 = output redirection
     3 = output redirection (append)
     */
-    */
 
     if (args[0]) {                     // if there's anything there
         /* check for internal */
