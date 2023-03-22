@@ -28,6 +28,7 @@
 #include <dirent.h> // for dlr
 #include <sys/stat.h> // for dlr
 #include <time.h> // for dlr
+#include <sys/wait.h> // for external commands
 
 //function prototypes
 #include "myshell.h"
@@ -43,11 +44,10 @@ int main (int argc, char ** argv)
     system("clear"); //clear screen
 
     //start logo graphics
-    printf(" ___  ____    __    ___  _   _  ____  __    __   \n");
-    printf("/ __)( ___)  /__\\  / __)( )_( )( ___)(  )  (  )  \n");
-    printf("\\__ \\ )__)  /(__)\\ \\__ \\ ) _ (  )__)  )(__  )(__ \n");
-    printf("(___/(___) (__)(__) (___/(_) (_)(____)(____)(____)\n");
-    printf("==================================================\n");
+    printf("  ___  ___  _   _  ____  __    __   \n");
+    printf(" / __)/ __\\( )_( )( ___)(  )  (  )  \n");
+    printf("( (__ \\__ \\\\ ) _ (  )__)  )(__  )(__ \n");
+    printf(" \\___)(___/(_) (_)(____)(____)(____)\n");
 
     printf("%s\n", cwd); // show current working directory
 
@@ -89,7 +89,6 @@ int main (int argc, char ** argv)
     while (!feof(stdin)) { 
         /* get command line from input */
         fputs (prompt, stdout); // write prompt
-
         if (fgets (buf, MAX_BUFFER, stdin )) { // read a line
             /* tokenize the input into args array */
             arg = args;
@@ -99,6 +98,7 @@ int main (int argc, char ** argv)
 
             // last entry will be NULL 
             if (args[0]) {                     // if there's anything there
+                printf("\033[31m");  //set output in red
                 /* check for internal/external command */
                 if (!strcmp(args[0],"clear")) { // "clear" command
                     system("clear");
@@ -182,10 +182,40 @@ int main (int argc, char ** argv)
                     break;                     // break out of 'while' loop
             
                 /* else pass command onto OS (or in this instance, print them out) */
-                arg = args;
-                while (*arg) {
-                    printf("\033[31m|%s\n",*arg);
-                    arg++;
+                else{
+                    //check if last argument is & and need to run in background
+                    int run_in_background = 0;
+                    char **arg;
+                    for(arg = args; *arg != NULL; arg++){}
+                    char *last_arg = *(arg - 1);
+                    if (!strcmp(last_arg,"&")) {
+                        run_in_background = 1;
+                        last_arg = NULL; //remove & from args
+                    }
+
+                    pid_t pid;
+                    int status;
+                    // Fork and execute other commands
+                    pid = fork();
+                    if (pid == 0) {
+                        // Child process
+                        setenv("PWD", "/myshell", 1);
+                        if (execvp(args[0], args) == -1) {
+                            perror("execvp");
+                            exit(1);
+                        }
+                    } else if (pid < 0) {
+                        // Forking error
+                        perror("fork");
+                    } else if(run_in_background){
+                            printf("Running in background\n");
+                    } else {
+                        if (waitpid(pid, &status, WUNTRACED) == -1) {
+                            perror("waitpid");
+                            exit(1);
+                        }
+                    }
+                    printf("|\n");
                 }
             }
         }

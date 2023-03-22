@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void cat(){
-    //cat meaw
+    //cat meow
     printf("\n");
     printf(" /\\_/\\ \n");
     printf("( o.o )\n");
