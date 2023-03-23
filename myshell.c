@@ -115,13 +115,17 @@ void runCommand(char *args[MAX_ARGS]){
     char *outputfile = NULL;  //output file
     int redirection_flag;  //flag to check if redirection is needed
     redirection_flag = redirection(args, &inputfile, &outputfile); //check for redirection
-    printf("%d\n", redirection_flag);
+    // printf("%d\n", redirection_flag);
     /*
     0 = no redirection
     1 = input redirection
     2 = output redirection
     3 = output redirection (append)
     */
+    if(redirection_flag == 1){
+        freopen(inputfile, "r", stdin);
+    }
+    
 
     if (args[0]) {                     // if there's anything there
         /* check for internal */
